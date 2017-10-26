@@ -4,7 +4,7 @@
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
 
-apt_update
+
 
 execute 'change lang' do
   command 'locale-gen en_GB.UTF-8'
@@ -19,6 +19,7 @@ apt_repository 'mongodb-org' do
   components ['multiverse']
 end
 
+apt_update
 
 package 'mongodb-org'
 
@@ -28,11 +29,11 @@ service 'mongod' do
   action [:enable, :start]
 end
 
-template '/etc/systemd/system/mongodb.service' do
-  source 'mongodb.service.erb'
+template '/etc/systemd/system/mongod.service' do
+  source 'mongod.service.erb'
   owner 'root'
   group 'root'
-  mode '0750'
+  mode '0755'
 end
 
 file '/etc/mongod.conf' do
@@ -43,5 +44,5 @@ template '/etc/mongod.conf' do
   source 'mongod.conf.erb'
   owner 'root'
   group 'root'
-  mode '0750'
+  mode '0755'
 end

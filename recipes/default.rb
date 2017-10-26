@@ -20,7 +20,6 @@ apt_repository 'mongodb-org' do
 end
 
 
-
 package 'mongodb-org'
 
 

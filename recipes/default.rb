@@ -24,10 +24,6 @@ apt_update
 package 'mongodb-org'
 
 
-service 'mongod' do
-  supports status: true, restart: true, reload: true
-  action [:enable, :start]
-end
 
 template '/etc/systemd/system/mongod.service' do
   source 'mongod.service.erb'
@@ -45,4 +41,11 @@ template '/etc/mongod.conf' do
   owner 'root'
   group 'root'
   mode '0755'
+  notifies :restart, 'service[mongod]'
+end
+
+
+service 'mongod' do
+  supports status: true, restart: true, reload: true
+  action [:enable, :start]
 end

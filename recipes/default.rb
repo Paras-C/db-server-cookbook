@@ -28,7 +28,7 @@ service 'mongod' do
   action [:enable, :start]
 end
 
-template '/etc/systemd/system/mongod.service' do
+template '/etc/systemd/system/mongodb.service' do
   source 'mongodb.service.erb'
   owner 'root'
   group 'root'

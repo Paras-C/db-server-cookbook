@@ -18,5 +18,20 @@ describe 'db-server::default' do
     it 'converges successfully' do
       expect { chef_run }.to_not raise_error
     end
+
+    it 'installs mongodb-org' do
+      expect(chef_run).to install_package 'mongodb-org'
+    end
+
+    it 'enables mongod' do
+      expect(chef_run).to enable_service 'mongod'
+    end
+
+    it 'starts mongod' do
+      expect(chef_run).to start_service 'mongod'
+    end
+
+
+
   end
 end

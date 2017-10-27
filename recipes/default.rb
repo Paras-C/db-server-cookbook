@@ -19,7 +19,9 @@ apt_repository 'mongodb-org' do
   components ['multiverse']
 end
 
-apt_update
+apt_update 'update' do
+  action :update
+end
 
 package 'mongodb-org' do
   action :upgrade

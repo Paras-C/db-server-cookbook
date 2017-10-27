@@ -45,6 +45,15 @@ describe 'db-server::default' do
       template = chef_run.template('/etc/mongod.conf')
     end
 
+    it 'apt-updates' do
+      expect(chef_run).to update_apt_update 'update'
+    end
+
+    it 'changes language' do
+      expect(chef_run).to run_execute 'locale-gen en_GB.UTF-8'
+    end
+
+
 
   end
 end
